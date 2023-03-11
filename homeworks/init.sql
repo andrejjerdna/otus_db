@@ -7,7 +7,7 @@ CREATE TABLE catalog
 (
     id SERIAL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name TEXT NOT NULL CHECK ( length(name) > 5 ),
-    description text,
+    description TEXT,
     fk_developer INTEGER REFERENCES "user"(id)
 );
 
