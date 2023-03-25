@@ -18,11 +18,17 @@ CREATE TABLE catalog
 CREATE TABLE "user"
 (
     id SERIAL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    fk_role INTEGER REFERENCES "role"(id),
+    fk_role SMALLSERIAL REFERENCES "role"(id),
     name TEXT NOT NULL CHECK ( length(name) > 3 ),
     register_date TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT (NOW() AT TIME ZONE 'utc'),
     email TEXT NOT NULL UNIQUE,
     phone TEXT NOT NULL UNIQUE,
+    fk_country SMALLSERIAL REFERENCES country(id)
+);
+
+CREATE TABLE country
+(
+    id SERIAL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     country TEXT
 );
 
